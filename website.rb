@@ -1,5 +1,7 @@
 require "sinatra"
 
+set :public_folder, 'public'
+
 get '/' do
   haml :index, :format => :html5
 end
@@ -15,5 +17,6 @@ post '/blog' do
 end
 
 get '/*' do
-  posts.to_s
+  status 404
+  haml :not_found, :format => :html5
 end
