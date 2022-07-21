@@ -6,10 +6,6 @@ get '/' do
   haml :index, :format => :html5
 end
 
-get '/boobs' do 
-  "boobs"
-end
-
 posts = []
 post '/blog' do
   payload = JSON.parse(request.body.read)
