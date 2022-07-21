@@ -1,15 +1,21 @@
 require "sinatra"
 
+def render_page(page)
+  haml page, :format => :html5, :layout => :header_layout
+end
+
 set :public_folder, 'public'
 
 get '/' do
-  haml :index, :format => :html5
+  render_page :index
 end
 
-posts = []
-post '/blog' do
-  payload = JSON.parse(request.body.read)
-  posts << payload["name"]
+get '/info' do
+  haml :info, :format => :html5
+end
+
+get '/contact' do
+  haml :contact, :format => :html5, :layout => :header_layout
 end
 
 get '/*' do

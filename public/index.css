@@ -10,12 +10,12 @@ h1 {
 	padding: 1em;
 	border: 14px solid #929d87;
 	display: block;
+	font-size: 2.5em;
 }
 
 h2 {
 	text-align: left;
 	color: #929d87;
-	margin: 0px 40px;
 }
 
 p {
@@ -23,12 +23,32 @@ p {
 	color: #e1f2d0;
 }
 
+a {
+	color: #ffffff;
+	size: 2em;
+}
+
 body {
-	font-size: 14px;
+	font-size: calc(14px + 0.33vw + 0.11vh);
 	background-color: #43483E;
-	margin: 20px;
+	margin-left: 25vw;
+	margin-right: 25vw;
 }
 
 .title { 
 	text-decoration: underline;
 }
+
+.margin-lr-1em {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+@media only screen and (max-width: 567px){
+    body {
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+}
+
+
