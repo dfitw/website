@@ -1,4 +1,4 @@
 - $data.each do |i|
   %div
     %a{:href => i["html_url"]}= i["name"]
-    = " Last edit  #{i["language"]}"
+    = " Last edit  #{i["updated_at"].split('T')[0]}"
