@@ -1,4 +1,6 @@
 require "sinatra"
+require "net/http"
+require "json"
 
 def render_page(page)
   haml page, :format => :html5, :layout => :header_layout
@@ -11,11 +13,17 @@ get '/' do
 end
 
 get '/info' do
-  haml :info, :format => :html5
+  render_page :info
 end
 
 get '/contact' do
-  haml :contact, :format => :html5, :layout => :header_layout
+  render_page :contact
+end
+
+get '/projects' do 
+  response = Net::HTTP.get(URI 'https://api.github.com/users/dfitw/repos')
+  @data = JSON.parse response
+  render_page :projects
 end
 
 get '/*' do

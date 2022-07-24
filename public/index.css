@@ -29,6 +29,7 @@ a {
 }
 
 body {
+    color: #ffffff;
 	font-size: calc(14px + 0.33vw + 0.11vh);
 	background-color: #43483E;
 	margin-left: 25vw;
