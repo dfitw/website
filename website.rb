@@ -2,6 +2,31 @@ require "sinatra"
 require "net/http"
 require "json"
 
+class Worker
+  def initialize(p, timer = 1000)
+    @func = p
+    @timer = timer
+  end
+
+  def do_work
+    Thread.new do
+      while true
+        @func.call
+        sleep @timer
+      end
+    end
+  end
+end
+
+$data = nil
+
+worker = Worker.new(proc do 
+  response = Net::HTTP.get(URI 'https://api.github.com/users/dfitw/repos')
+  $data = JSON.parse response
+end, 300000)
+
+worker.do_work
+
 def render_page(page)
   haml page, :format => :html5, :layout => :header_layout
 end
@@ -21,8 +46,6 @@ get '/contact' do
 end
 
 get '/projects' do 
-  response = Net::HTTP.get(URI 'https://api.github.com/users/dfitw/repos')
-  @data = JSON.parse response
   render_page :projects
 end
 
